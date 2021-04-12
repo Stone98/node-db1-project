@@ -37,6 +37,6 @@ exports.checkAccountId = async (req, res, next) => {
   if (idExists) {
     next();
   } else {
-    res.statsu(404).json({ message: "account not found" });
+    res.status(404).json({ message: "account not found" });
   }
 };
