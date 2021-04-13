@@ -5,7 +5,7 @@ const getAll = () => {
 };
 
 const getById = (id) => {
-  return db("accounts").where({ id }).first(); // returns the project who's id matched the id given firrst
+  return db("accounts").where({ id }).first(); // returns the project who's id matched the id given first
 };
 
 const create = async (account) => {
