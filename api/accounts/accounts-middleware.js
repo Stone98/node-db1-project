@@ -41,6 +41,7 @@ exports.checkAccountNameUnique = async (req, res, next) => {
     res.status(400).json({ message: "that name is taken" });
   }
 };
+
 // checks to see if the id of an acoount exists in the database, used to find individual accounts
 exports.checkAccountId = async (req, res, next) => {
   const { id } = req.params; // destructuring id from req.params
