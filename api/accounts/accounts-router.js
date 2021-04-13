@@ -1,7 +1,8 @@
-const router = require("express").Router();
-const Account = require("./accounts-model");
-const mw = require("./accounts-middleware");
+const router = require("express").Router(); // sets up accounts router
+const Account = require("./accounts-model"); // imports accounts model functions
+const mw = require("./accounts-middleware"); // imports accounts middlewares using a named import
 
+// route to GET all accounts
 router.get("/", async (req, res, next) => {
   try {
     const data = await Account.getAll();
@@ -11,6 +12,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+// route to GET an account by its id
 router.get("/:id", mw.checkAccountId, async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -21,6 +23,7 @@ router.get("/:id", mw.checkAccountId, async (req, res, next) => {
   }
 });
 
+// route to POST a new account
 router.post(
   "/",
   mw.checkAccountPayload,
@@ -39,6 +42,7 @@ router.post(
   }
 );
 
+// route to PUT/UPDATE an existing account by using its id to find it
 router.put(
   "/:id",
   mw.checkAccountPayload,
@@ -56,6 +60,7 @@ router.put(
   }
 );
 
+// route to DELETE an existing account by using its id to find it
 router.delete("/:id", mw.checkAccountId, async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -66,6 +71,7 @@ router.delete("/:id", mw.checkAccountId, async (req, res, next) => {
   }
 });
 
+// error handling middleware for errors that occur in accounts router
 // eslint-disable-next-line no-unused-vars
 router.use((err, req, res, next) => {
   res.status(500).json({
